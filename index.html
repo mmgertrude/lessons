@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Vue</title>
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+    <link rel="stylesheet" href="mystyle.css">
+   
+</head>
+<body>
+    <h1>hello there!</h1>
+    
+    <div id="app">
+
+        <!-- books demo-->
+        <div v-if="showBooks">
+            <p>{{title}} - {{author}}</p>
+        </div>  
+
+        <button @click ="toggleShowBooks">
+            <span v-if="showBooks">Hide Books</span>
+            <span v-else>Show Books</span>
+        </button>
+        <!-- showing difference between v-if and v-show-->
+        <div v-show="showBooks">currently showing books</div>
+
+        <br>
+        <!-- mouse events 
+        <div class="box" @mouseover="handleEvent"> mouseover</div>
+        <div class="box" @mouseleave="handleEvent"> mouseleave</div>
+        <div class="box" @dbclick="handleEvent"> double click</div>
+        <div class="box" @mousemove="handleMouseMove">mouse is at position - {{x}} {{y}} </div>
+        -->
+
+        <div v-if="showChildren">
+            <ul>
+                <h2><p>{{mother}}:</p></h2>
+                <!-- v-for="i in array"-->
+                <li v-for="child in filteredGrads" :class="{grad:child.isGraduate}" @click="toggleGrad(child)">
+                    <img :src="child.img" :alt="child.firstName">
+                    <h3>{{child.firstName}} {{child.lastName}} - {{child.age}}</h3>
+                    <p>{{child.current_school}} - {{child.current_course}}</p>
+                </li>
+            </ul>
+        </div>  
+
+        <button @click ="toggleShowChildren">
+            <span v-if="showChildren">Hide Children</span>
+            <span v-else>Show Children</span>
+        </button>
+
+        <!-- Attribute binding-->
+        <!-- v-bind:href="somedynamicProperty" is the same as-->
+        <!-- :href="somedynamicProperty"-->
+        <a v-bind:href="url">where i learnt vue</a>
+
+        
+</div>
+
+    <script src="app.js"></script>
+</body>
+</html>
